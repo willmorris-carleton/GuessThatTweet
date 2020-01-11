@@ -1,0 +1,23 @@
+{
+  "name": "guessthattweet",
+  "version": "1.0.0",
+  "description": "Made as part of the cuHacking event",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willmorris-carleton/GuessThatTweet.git"
+  },
+  "author": "William Morris / Braeden Brooking",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willmorris-carleton/GuessThatTweet/issues"
+  },
+  "homepage": "https://github.com/willmorris-carleton/GuessThatTweet#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
