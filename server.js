@@ -105,6 +105,68 @@ function parseTweets(tweetJson){
 	return jsonArray;
 }
 
+function tweetPicker(tweetsjson){
+	let rounds = 5; //Change as needed
+	
+	let textArray = [];
+	let idArray = [];
+
+	tweetsjson = arrayShuffle(tweetsjson); //Shuffles the array 
+	
+	for(let i =0; i<tweetsjson.length; i++){//Splits the json into its text and id components
+		textArray.push(tweetsjson[i].text);
+		idArray.push(tweetsjson[i].id);
+	}
+	
+	let picked = [];
+	
+	for(let i=0; i<tweetsjson; i++){
+		let wordArray = textArray[i].split(" "); //Split the text into an array of separate words
+		if(wordArray.length < 5){//Skips arrays with less than 5 words
+			continue;
+		}
+		
+		let flag = false;
+		
+		for(let j=0; j<wordArray.length; j++){//Makes sure at least one word is longer than 3 letters
+			if(wordArray[j].length > 3){
+				flag = true;
+				break;
+			}
+		}
+		
+		if(flag){//If the tweet passes it goes on the picked array
+			picked.push(tweetsjson[i]);
+		}
+		
+		if(picked.length>rounds){//Once we have a tweet for each round break
+			break;
+		}
+		
+		
+	}
+	
+	console.log("There will be " + picked.length + " rounds");
+	
+	return picked;
+}
+
+function arrayShuffle(array){
+	let length = array.length;
+	
+	while(length>0){
+		
+		let index = Math.floor(Math.random() * length);
+		
+		length--;
+		
+		let temp = array[length];
+		array[length] = array[index];
+		array[index] = temp;
+	}
+	return array;
+}
+
 function createLink(username){
 	return "https://twitter.com/i/search/timeline?f=live&q=(from%3A" + username + ")%20lang%3Aen%20-filter%3Alinks%20-filter%3Areplies&src=typd"
 }
