@@ -24,8 +24,10 @@ function getTweetsByPersonSpecific(req,res,next) {
         next(); //No specific person given so just give general page
         return;
     }
+    let search = req.params.person;
+    let link = createLink(search);
     var options = {
-        url: 'https://twitter.com/i/search/timeline?f=live&q=(from%3Arealdonaldtrump)&src=typd',
+        url: link,
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -38,7 +40,7 @@ function getTweetsByPersonSpecific(req,res,next) {
             res.status(500).send("Poop :)");
         }
         console.log("Rand Request Finished");
-        let responseObject = JSON.parse(body);
+        let responseObject = parseTweets(JSON.parse(body));
         //Return JSON
         res.render("byPerson", {responseObject: responseObject});
     });

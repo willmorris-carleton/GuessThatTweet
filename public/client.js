@@ -1,6 +1,6 @@
 
 function makeRequest() {
-    let input = document.getElementById("textInput");
+    let input = document.getElementById("textInput").value;
     //Make the request
     req = new XMLHttpRequest();
     req.onreadystatechange = function() {

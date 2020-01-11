@@ -12,5 +12,8 @@ html
             input(type="button" onclick="makeRequest()" value="Make Request")
             div(id="responseDiv")
         - else
+            each tweet in responseObject
+                li!= tweet 
             - let t = JSON.stringify(responseObject)
             div= t
+            
