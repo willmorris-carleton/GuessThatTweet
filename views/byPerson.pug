@@ -2,18 +2,19 @@ html
     head
         title Guess word by Person!
         script(defer src="client.js")
+        link(rel="stylesheet" href="client.css")
 
     body(id="body")
 
         - if (!responseObject)
             include partials/header
-            h2 Get Tweets by Person
-            input(type="text" id="textInput")
-            input(type="button" onclick="makeRequest()" value="Make Request")
-            div(id="responseDiv")
+            h2(class="bounceInLeft animated") Get Tweets by Person
+            input(type="text" id="textInput" class="bounceInLeft animated")
+            input(type="button" onclick="makeRequest()" value="Make Request" class="bounceInLeft animated")
+            div(id="responseDiv" class="bounceInLeft animated")
         - else
             each tweet in responseObject
-                li!= tweet 
+                li(class="bounceInLeft animated")!= tweet 
             - let t = JSON.stringify(responseObject)
-            div= t
+            div(class="bounceInLeft animated")= t
             

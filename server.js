@@ -26,6 +26,7 @@ function getTweetsByPersonSpecific(req,res,next) {
     }
     let search = req.params.person;
     let link = createLink(search);
+    console.log(link);
     var options = {
         url: link,
         method: 'GET',
@@ -85,7 +86,7 @@ function parseTweets(tweetJson){
 }
 
 function createLink(username){
-	return "https://twitter.com/i/search/timeline?f=live&q=(from%3A" + username + ")%20-filter%3Alinks%20-filter%3Areplies&src=typd"
+	return "https://twitter.com/i/search/timeline?f=live&q=(from%3A" + username + ")%20lang%3Aen%20-filter%3Alinks%20-filter%3Areplies&src=typd"
 }
 
 app.listen(3000);
