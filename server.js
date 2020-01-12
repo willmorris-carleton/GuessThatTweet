@@ -219,8 +219,10 @@ function getTweetsByPersonArray(username, sock) {
 		console.log(parsedTweets);
 		let picked = tweetPicker(parsedTweets);
 		console.log("VVVV");
-		console.log(picked);
-        picked = picked.forEach(twee => twee["chosenWordJSON"] = twee["text"]);
+        for (let i = 0; i < picked.length; i++) {
+            picked[i]['wordChosen'] = chooseWord(picked[i]['text']);
+        }
+        //console.log(picked);
         sock.emit('roundJSON', picked);
     });
 }
