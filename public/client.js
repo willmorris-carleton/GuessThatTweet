@@ -55,7 +55,7 @@ function createDomElemsOfRound(){
 
 function enterGuess() {
     let input = document.getElementById("guessInp").value;
-    if (input === picked[currentRound]["wordChosen"]["word"]) {
+    if (input.toLowerCase() === picked[currentRound]["wordChosen"]["word"].toLowerCase()) {
         alert("CORRECT!");
     }
     else{
