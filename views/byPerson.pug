@@ -1,16 +1,18 @@
 html
     head
         title Guess word by Person!
-        script(defer src="client.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js")
+        script(src="client.js")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css")
 
-    body(id="body")
+    body(id="body" onload="initSockets()")
 
         - if (!responseObject)
             include partials/header
-            h2(class="bounceInLeft animated") Get Tweets by Person
-            input(type="text" id="textInput" class="bounceInLeft animated")
-            input(type="button" onclick="makeRequest()" value="Make Request" class="bounceInLeft animated")
+            div(id="choosePerson")
+                h2(class="bounceInLeft animated") Get Tweets by Person
+                input(type="text" id="textInput" class="bounceInLeft animated")
+                input(type="button" onclick="makeRequest()" value="Make Request" class="bounceInLeft animated")
             div(id="responseDiv" class="bounceInLeft animated")
         - else
             each tweet in responseObject

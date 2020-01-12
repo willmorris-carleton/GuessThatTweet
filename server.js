@@ -1,6 +1,8 @@
 const express = require('express');
 const request = require('request');
 let app = express();
+let server = require('http').Server(app);
+let io = require('socket.io').listen(server);
 
 //To serve up index.html and client side javascript
 app.use(express.static("public"));
@@ -110,7 +112,7 @@ function tweetPicker(tweetsjson){
 	
 	let textArray = [];
 	let idArray = [];
-
+    console.log(tweetsJson);
 	tweetsjson = arrayShuffle(tweetsjson); //Shuffles the array 
 	
 	for(let i =0; i<tweetsjson.length; i++){//Splits the json into its text and id components
@@ -190,5 +192,45 @@ function chooseWord(sentence){
     return {"word": words[randIndex], "length":lengthS, "oldSentence":sentence, "newSentence":sentence.replace(words[randIndex], spaces)}
 }
 
-app.listen(3000);
+server.listen(3000);
 console.log("Listening on port 3000");
+
+function getTweetsByPersonArray(username, sock) {
+    let search = username;
+    let link = createLink(search);
+    console.log(link);
+    var options = {
+        url: link,
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Accept-Charset': 'utf-8'
+        }
+    };
+    //Parse request into an object with the questions. Add those questions and info on the current round to the global round object
+    request(options, function(err, resp, body) {
+        if (err) {
+            console.log(err);
+            return null;
+        }
+        console.log("Rand Request Finished");
+
+        let parsedTweets = parseTweets(JSON.parse(body));
+        let picked = tweetPicker(parsedTweets);
+        picked = picked.forEach(twee => twee["chosenWordJSON"] = twee["text"]);
+        sock.emit('roundJSON', picked);
+    });
+}
+
+const numRounds = 5;
+//SOCKETS
+io.on('connection', function (socket) {
+    console.log("A connection was made!");
+    socket.on('getNewGame', function(username){
+        //Make 5 randos based off of request
+        console.log(username)
+        getTweetsByPersonArray(username, socket);
+    });
+    
+
+});
