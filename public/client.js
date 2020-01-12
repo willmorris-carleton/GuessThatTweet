@@ -24,35 +24,10 @@ function makeRequest() {
     req.open("GET", '/tweetsByPerson/'+input);
     req.setRequestHeader("Content-Type", "text/html");
     req.send();
-<<<<<<< HEAD
     currentPerson = input;
     socket.emit('getNewGame', currentPerson);
 }
 
 function submitAnswer() {
-=======
-}
-
-function revealTweet(){
-    let tweetDiv = document.getElementById("tweetDiv");
-    let styleDiv = document.getElementById("newStyle");
-
-    //This block gets the tweet text out of the embedded block
-    let originalHtml = tweetDiv.innerHTML;
-    let index = originalHtml.search('<p class="Tweet-text e-entry-title" lang="en" dir="ltr">');
-    let tweetBlock = originalHtml.slice(index);
-    originalHtml = originalHtml.slice(index);
-    let endIndex  = originalHtml.search("</p>");
-    tweetBlock = tweetBlock.slice(0,endIndex);
-
-
-    //This eliminates the text from the page
-    originalHtml = tweetDiv.innerHTML;
-    originalHtml = originalHtml.replace(tweetBlock);
-    tweetDiv.innerHTML = originalHtml;
-    console.log("HERE")
-    //This reveals the tweet
-    styleDiv.innerHTML = "<style>.tweetDiv{display:inline !important}</style>";
->>>>>>> 22198b4f0646454513c993f83667bd05d00f0d90
 
 }
