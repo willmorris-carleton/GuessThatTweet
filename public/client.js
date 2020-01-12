@@ -28,7 +28,7 @@ function createDomElemsOfRound(){
     currentRound++;
     let div = document.getElementById("responseDiv");
     div.innerHTML = "";
-    if (currentRound>=4) {
+    if (currentRound > 4) {
         //Make the choose person div reappear
         div.style = "";
         currentRound = -1;
