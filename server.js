@@ -188,8 +188,10 @@ function chooseWord(sentence){
     let lengthS = words[randIndex].length;
     for (let i = 0; i < lengthS; i++) {
         spaces += "_";
-    }
-    return {"word": words[randIndex], "length":lengthS, "oldSentence":sentence, "newSentence":sentence.replace(/\\/g,"").replace(words[randIndex], spaces)}
+	}
+	let replace = "\\\\n";
+	let myRegex = new RegExp(replace, "g");
+    return {"word": words[randIndex], "length":lengthS, "oldSentence":sentence, "newSentence":sentence.replace(myRegex,"").replace(words[randIndex], spaces)}
 }
 
 server.listen(3000);
