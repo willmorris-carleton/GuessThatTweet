@@ -112,18 +112,19 @@ function tweetPicker(tweetsjson){
 	
 	let textArray = [];
 	let idArray = [];
-    console.log(tweetsJson);
+    console.log(tweetsjson);
 	tweetsjson = arrayShuffle(tweetsjson); //Shuffles the array 
 	
+	/*
 	for(let i =0; i<tweetsjson.length; i++){//Splits the json into its text and id components
 		textArray.push(tweetsjson[i].text);
 		idArray.push(tweetsjson[i].id);
-	}
+	}*/
 	
 	let picked = [];
 	
-	for(let i=0; i<tweetsjson; i++){
-		let wordArray = textArray[i].split(" "); //Split the text into an array of separate words
+	for(let i=0; i<tweetsjson.length; i++){
+		let wordArray = tweetsjson[i].text.split(" "); //Split the text into an array of separate words
 		if(wordArray.length < 5){//Skips arrays with less than 5 words
 			continue;
 		}
@@ -148,7 +149,6 @@ function tweetPicker(tweetsjson){
 		
 	}
 	
-	console.log("There will be " + picked.length + " rounds");
 	
 	return picked;
 }
@@ -215,8 +215,11 @@ function getTweetsByPersonArray(username, sock) {
         }
         console.log("Rand Request Finished");
 
-        let parsedTweets = parseTweets(JSON.parse(body));
-        let picked = tweetPicker(parsedTweets);
+		let parsedTweets = parseTweets(JSON.parse(body));
+		console.log(parsedTweets);
+		let picked = tweetPicker(parsedTweets);
+		console.log("VVVV");
+		console.log(picked);
         picked = picked.forEach(twee => twee["chosenWordJSON"] = twee["text"]);
         sock.emit('roundJSON', picked);
     });
