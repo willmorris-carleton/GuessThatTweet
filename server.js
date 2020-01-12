@@ -98,11 +98,11 @@ function parseTweets(tweetJson){
 	}else{
 		let jsonArray = [];
 		for(let i=0; i<tweetsArray.length; i++){
-			let newjsonObj = {"text":tweetArray[i], "id":idsArray[i]};
+			let newjsonObj = {"text":tweetsArray[i], "id":idsArray[i]};
 			jsonArray.push(newjsonObj);
-		}
+        }
+        return jsonArray;
 	}
-	return jsonArray;
 }
 
 function tweetPicker(tweetsjson){
@@ -173,6 +173,21 @@ function createLink(username){
 
 function getEmbedLink(username,id){
 	return "https://publish.twitter.com/?query=https%3A%2F%2Ftwitter.com%2F" + username +"%2Fstatus%2F"+ id + "&widget=Tweet"
+}
+
+function chooseWord(sentence){
+    let nonoWords = ["she", "herself", "you", "are", "that", "they", "each", "few", "many", "who", "whoever", "whose"]; //Get rid of pronouns
+    let words = sentence.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(" "); //Get rid of any punctuation
+    words = words.filter(function(word) {
+        return word.length > 3 && !nonoWords.includes(word);
+    }); //Filter words by size and nonoWords
+    let randIndex = Math.floor(Math.random()*words.length);
+    let spaces = "";
+    let lengthS = words[randIndex].length;
+    for (let i = 0; i < lengthS; i++) {
+        spaces += "_";
+    }
+    return {"word": words[randIndex], "length":lengthS, "oldSentence":sentence, "newSentence":sentence.replace(words[randIndex], spaces)}
 }
 
 app.listen(3000);
