@@ -1,4 +1,4 @@
-const domain = 'http://localhost:3000/';
+const domain = 'http://localhost:8080/';
 let currentPerson = "";
 let currentRound = 0;
 let picked = null;
