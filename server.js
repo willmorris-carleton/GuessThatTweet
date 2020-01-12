@@ -181,7 +181,7 @@ function chooseWord(sentence){
     let nonoWords = ["she", "herself", "you", "are", "that", "they", "each", "few", "many", "who", "whoever", "whose"]; //Get rid of pronouns
     let replace = "\\\\n";
 	let myRegex = new RegExp(replace, "g");
-    let words = sentence.replace(myRegex," ").replace(/[(\r\n|\r|\n)\n.,\/!?+'$%\^\*;:{}=_`~()]/g,"").split(" "); //Get rid of any punctuation
+    let words = sentence.replace(myRegex," ").replace(/[(\r\n|\r|\n)\n.,\/!?+$%\^\*;:{}=_`~()]/g,"").split(" "); //Get rid of any punctuation
     words = words.filter(function(word) {
         return word.length > 3 && !nonoWords.includes(word);
     }); //Filter words by size and nonoWords
