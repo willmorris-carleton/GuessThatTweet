@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script defer src="client.js"></script>
+    <script defer src="public/client.js"></script>
     <title>GuessThatTweet</title>
+
+    
+    <style>
+        #tweetDiv {
+            display: none !important;
+        }
+    </style>
+    
+    <div id="newStyle"></div>
+
+
 </head>
 <body>
     <h1>Guess that tweet!</h1>
     <input type="button" onclick="makeRequest()" value="Make Request"></input>
     <div id="responseDiv"></div>
-    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">did anyone else think everyone was too distractingly mean to jerry on parks and rec or am i bein a baby back bitch</p>&mdash; Gus Danger Johnson (@Gusbuckets) <a href="https://twitter.com/Gusbuckets/status/1215881918572445696?ref_src=twsrc%5Etfw">January 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="tweetDiv" id="tweetDiv">
+    <blockquote class="twitter-tweet" ><p lang="en" dir="ltr">did anyone else think everyone was too distractingly mean to jerry on parks and rec or am i bein a baby back bitch</p>&mdash; Gus Danger Johnson (@Gusbuckets) <a href="https://twitter.com/Gusbuckets/status/1215881918572445696?ref_src=twsrc%5Etfw">January 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    </br>
+    <input type="button" onclick="revealTweet()" value="Reveal Tweet"></input>
 </body>
 </html>
