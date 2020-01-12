@@ -98,11 +98,11 @@ function parseTweets(tweetJson){
 	}else{
 		let jsonArray = [];
 		for(let i=0; i<tweetsArray.length; i++){
-			let newjsonObj = {"text":tweetArray[i], "id":idsArray[i]};
+			let newjsonObj = {"text":tweetsArray[i], "id":idsArray[i]};
 			jsonArray.push(newjsonObj);
-		}
+        }
+        return jsonArray;
 	}
-	return jsonArray;
 }
 
 function tweetPicker(tweetsjson){

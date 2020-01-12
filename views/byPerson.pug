@@ -14,7 +14,7 @@ html
             div(id="responseDiv" class="bounceInLeft animated")
         - else
             each tweet in responseObject
-                li(class="bounceInLeft animated")!= tweet 
+                li(class="bounceInLeft animated")!= tweet["text"] 
             - let t = JSON.stringify(responseObject)
             div(class="bounceInLeft animated")= t
             
