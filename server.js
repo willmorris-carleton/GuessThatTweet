@@ -195,8 +195,10 @@ function chooseWord(sentence){
     return {"word": words[randIndex], "length":lengthS, "oldSentence":sentence, "newSentence":sentence.replace(myRegex," ").replace(words[randIndex], spaces)}
 }
 
-server.listen(3000);
-console.log("Listening on port 3000");
+server.listen(process.env.PORT || 8080, () => {
+    const port = server.address().port;
+    console.log(`App listening on port ${port}`);
+  });
 
 function getTweetsByPersonArray(username, sock) {
     let search = username;
