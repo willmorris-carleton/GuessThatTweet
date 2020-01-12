@@ -59,7 +59,7 @@ function enterGuess() {
         alert("CORRECT!");
     }
     else{
-        alert("INCORRECT!");
+        alert("INCORRECT! The answer was " + picked[currentRound]["wordChosen"]["word"]);
     }
     createDomElemsOfRound();
 }
