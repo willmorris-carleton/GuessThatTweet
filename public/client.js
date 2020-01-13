@@ -4,7 +4,7 @@ let currentRound = 0;
 let picked = null;
 
 function initSockets() {
-    socket = io.connect(domain);
+    socket = io.connect();
     console.log("Socket Connected")
     socket.on("roundJSON", function(picke){
         console.log(JSON.stringify(picke));
