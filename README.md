@@ -1,5 +1,5 @@
 # GuessThatTweet
-Made as part of the cuHacking event
+Made as part of the cuHacking event. To play you must press the guess word by person button and type in the username of whoever you want!
 
 ## Install and Run Instructions
 After downloading the files, the dependencies must be installed using npm. In the cmd type
